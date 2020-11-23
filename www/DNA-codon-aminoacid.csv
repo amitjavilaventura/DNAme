@@ -1,0 +1,27 @@
+One-letter code;Three-letter code;Aminoacid name;Homo sapiens;Mus musculus;Arabidopsis thaliana;Saccharomyces cerevisiae;Escherichia coli
+A;Ala;Alanine;GCC;GCC;;;
+B;-;-;---;---;---;---;---
+C;Cys;Cysteine;TGC;TGC;;;
+D;Asp;Aspartic acid;GAC;GAC;;;
+E;Glu;Glutamic acid;GAG;GAG;;;
+F;Phe;Phenylalanine;TTC;TTC;;;
+G;Gly;Glycine;GGC;GGC;;;
+H;His;Histidine;CAC;CAC;;;
+I;Ile;Isoleucine;ATC;ATC;;;
+J;-;-;---;-;---;---;---
+K;Lys;Lysine;AAG;AAG;;;
+L;Leu;Leucine;CTG;CTG;;;
+M;Met;Methionine;ATG;ATG;;;
+N;Asn;Asparagine;AAC;AAC;;;
+O;-;-;---;---;---;---;---
+P;Pro;Proline;CCC;CCC;;;
+Q;Gln;Glutamine;CAG;CAG;;;
+R;Arg;Arginine;CGG;AGG;;;
+S;Ser;Serine;AGC;AGC;;;
+T;Thr;Threonine;ACC;ACC;;;
+U;-;-;---;---;---;---;---
+V;Val;Valine;GTG;GTG;;;
+W;Trp;Tryptophan;TGG;TGG;;;
+X;-;-;---;---;---;---;---
+Y;Tyr;Tyrosine;TAC;TAC;;;
+Z;-;-;---;---;---;---;---

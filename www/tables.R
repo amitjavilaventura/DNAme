@@ -1,0 +1,23 @@
+dna_codon_aa <- data.frame(one_letter = c("A", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", 
+                                          "N", "P", "Q", "R", "S", "T", "V", "W", "Y"),
+                           three_letter = c("Ala", "Cys", "Asp", "Glu", "Phe", "Gly", "His", "Ile", "Lys", "Leu", "Met", 
+                                            "Asn", "Pro", "Gln", "Arg", "Ser", "Thr", "Val", "Trp", "Tyr"),
+                           aminoacid = c("Alanine", "Cysteine", "Aspartic acid", "Glutamic acid", "Phenylalanine", "Glycine", "Histidine", "Isoleucine", "Lysine", "Leucine", "Methionine", 
+                                         "Asparagine", "Proline", "Glutamine", "Arginine", "Serine", "Threonine", "Valine", "Tryptophan", "Tyrosine"),
+                           Human = c("GCC", "TGC", "GAC", "GAG", "TTC", "GGC", "CAC", "ATC", "AAG", "CTG", "ATG", 
+                                     "AAC", "CCC", "CAG", "CGG", "AGC", "ACC", "GTG", "TGG", "TAC"),
+                           Mouse = c("GCC", "TGC", "GAC", "GAG", "TTC", "GGC", "CAC", "ATC", "AAG", "CTG", "ATG", 
+                                     "AAC", "CCC", "CAG", "AGG", "AGC", "ACC", "GTG", "TGG", "TAC"), 
+                           stringsAsFactors = F)
+
+rna_codon_aa <- data.frame(one_letter = c("A", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", 
+                                          "N", "P", "Q", "R", "S", "T", "V", "W", "Y"),
+                           three_letter = c("Ala", "Cys", "Asp", "Glu", "Phe", "Gly", "His", "Ile", "Lys", "Leu", "Met", 
+                                            "Asn", "Pro", "Gln", "Arg", "Ser", "Thr", "Val", "Trp", "Tyr"),
+                           aminoacid = c("Alanine", "Cysteine", "Aspartic acid", "Glutamic acid", "Phenylalanine", "Glycine", "Histidine", "Isoleucine", "Lysine", "Leucine", "Methionine", 
+                                         "Asparagine", "Proline", "Glutamine", "Arginine", "Serine", "Threonine", "Valine", "Tryptophan", "Tyrosine"),
+                           Human = c("GCC", "UGC", "GAC", "GAG", "UUC", "GGC", "CAC", "AUC", "AAG", "CUG", "AUG", 
+                                     "AAC", "CCC", "CAG", "CGG", "AGC", "ACC", "GUG", "UGG", "UAC"),
+                           Mouse = c("GCC", "UGC", "GAC", "GAG", "UUC", "GGC", "CAC", "AUC", "AAG", "CUG", "AUG", 
+                                     "AAC", "CCC", "CAG", "AGG", "AGC", "ACC", "GUG", "UGG", "UAC"), 
+                           stringsAsFactors = F)

@@ -3,6 +3,8 @@
 #########
 
 library(shiny)
+source("www/functions.R")
+source("www/tables.R")
 
 # Define UI for application that draws a histogram
 ui <- navbarPage(title = "DNAme",
@@ -35,7 +37,7 @@ ui <- navbarPage(title = "DNAme",
                                           like the central dogma, the genetic codes, etc.
                                           Please have in mine that the teory shown in this section has the purpose of
                                           understand the process behind DNAme, don't use it for teaching purposes.")),
-                               tabPanel("How to use DNAme?",
+                               tabPanel("Instructions",
                                         h3("How to use DNAme?"),
                                         h4("Read the theory"),
                                         p("To use DNAme, it is important to read the biological theory behind it because:"),
@@ -105,7 +107,7 @@ ui <- navbarPage(title = "DNAme",
                                                  style="font-size:12px")),
                                
                                tabPanel(title = "How to DNA your name?",
-                                        h3("How to DNA your name"),
+                                        h3("How to DNA your name?"),
                                         h4("Aminoacid abbreviations"),
                                         p("As we have seen, each aminoacid is coded by one or different codons. We use that codons to write the DNA/mRNA sequence that encodes for a protein,
                                           but to the sequence of a protein we use the aminoacids."),
@@ -124,28 +126,75 @@ ui <- navbarPage(title = "DNAme",
                   titlePanel(title = "DNA your name"),
                   sidebarLayout(
                       sidebarPanel(
-                          selectInput(inputId = "format",
+                          selectInput(inputId = "nucleotide",
                                       label = "Select the sequence format:", 
                                       choices = c("DNA", "mRNA"),
                                       selected = "DNA"),
                           br(),
                           selectInput(inputId = "codon_usage",
                                       label = "Select an organism",
-                                      choices = c("Homo sapiens (Human)"),
-                                      selected = "Homo sapiens (Human)"),
+                                      choices = c("Human", "Mouse"),
+                                      selected = "Human"),
                           
                           br(),
-                          textInput(inputId = "name2dna",
+                          h4("Extra letters:"),
+                          helpText("In some cases, some extra letters are used to denote two similar 
+                                   aminoacids (B denotes Asparagine or Aspartic acid and Z denotes
+                                   Glutamine or Glutamic acid). X denotes 'any aminoacid' which is converted to
+                                   NNN in codon code. Here, only X is made available, but it is not recommended."),
+                          checkboxInput(inputId = "extra_letters", 
+                                        label = "Use X?", 
+                                        value = FALSE),
+                          
+                          br(),
+                          textInput(inputId = "separator",
+                                    label = "Select a separator for the codons composing your name:", 
+                                    value = "-"),
+                          
+                          br(),
+                          textInput(inputId = "name",
                                     label = "Write your name in UPPER case:", 
-                                    value = "DNAME")
+                                    value = "DNAME"),
+                          
+                          br(),
+                          submitButton("Submit")
+                          
                       ),
                       
-                      mainPanel()
+                      mainPanel(h3("This is your DNA name!"),
+                                tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:20px", textOutput("text_output"))))),
+                                helpText("If there is a NA, it means that the letter your name does not have an aminoacid."),
+                                br(),
+                                h4("Information"),
+                                helpText("This is all the information in the letters of your name."),
+                                dataTableOutput(outputId = "table_output"))
                   ))
 )
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {}
+server <- function(input, output) {
+  
+  
+  
+  output$text_output <-
+    renderText({
+      if(input$nucleotide == "DNA"){
+        table = dna_codon_aa
+      }
+      else{
+        table = rna_codon_aa
+      }
+      
+      DNAme <- name2dna(input = input$name, table = table, codon_usage = input$codon_usage, sep = input$separator)
+      
+      paste(DNAme$name)
+    })
+  
+  output$table_output <- 
+    renderDataTable({
+      DNAme$df
+    })
+}
 
 # Run the application 
 shinyApp(ui = ui, server = server)
