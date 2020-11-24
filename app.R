@@ -12,6 +12,7 @@ ui <- navbarPage(title = "DNAme",
                   titlePanel("What is DNAme?"),
                   navlistPanel(id = "info",
                                tabPanel("Why 'DNAme'?",
+                                        img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("What does DNAme mean?"),
                                         p("The word 'DNAme' is just a contraction of 'DNA' and 'name', 
                                           but you could also thing of 'DNA' as a verb that converts 'me' to DNA."),
@@ -20,6 +21,7 @@ ui <- navbarPage(title = "DNAme",
                                                 tags$li("'D-N-A-me'"),
                                                 tags$li("'D-name', although this one may be confusing, thus I don't recommend it."))),
                                tabPanel("Function",
+                                        img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("What does DNAme do?"),
                                         p("DNAme is a shiny application to convert a name to a DNA sequence."),
                                         p("It is based on the one-letter code for the amino acids and, considereing
@@ -28,16 +30,19 @@ ui <- navbarPage(title = "DNAme",
                                           DNAme converts each letter to its coding, either in DNA or mRNA format,
                                           going from protein to RNA or DNA.")),
                                tabPanel("Goal",
+                                        img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("Which is the goal of DNAme?"),
                                         p("DNAme goal can be different for each person that uses it:"),
                                         tags$ul(tags$li("Having fun changing one's name to DNA sequence."),
                                                 tags$li("Using it to teach and learn about the central dogma of biology,
                                                         the genetic code and the codon usage in a funny and simple way.")),
                                         p("In order to fulfill these objectives, there is a theory section explaining things
-                                          like the central dogma, the genetic codes, etc.
-                                          Please have in mine that the teory shown in this section has the purpose of
-                                          understand the process behind DNAme, don't use it for teaching purposes.")),
+                                          like the central dogma, the genetic codes, etc."),
+                                        p("Please have in mine that the teory shown in this section has the purpose of
+                                          understand the process behind DNAme, don't use it for teaching purposes
+                                          because it may contain errors.")),
                                tabPanel("Instructions",
+                                        img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("How to use DNAme?"),
                                         h4("Read the theory"),
                                         p("To use DNAme, it is important to read the biological theory behind it because:"),
@@ -53,7 +58,7 @@ ui <- navbarPage(title = "DNAme",
                                                 tags$li("Select the parameters:",
                                                         tags$ul(tags$li("Format: Selects the format in which the nucleotide sequence is written (DNA, the default, or mRNA.)"),
                                                                 tags$li("Codon usage: Selects the codon usage of a determined species, such as Homo sapiens (default).")),
-                                                tags$li("Write your name in CAPITAL LETTERS and without special characters."),
+                                                tags$li("Write your name without special characters."),
                                                 tags$li("Click to 'Submit'."),
                                                 tags$li("Wait.")))))),
          tabPanel(title = "Theory",
@@ -126,11 +131,24 @@ ui <- navbarPage(title = "DNAme",
                   titlePanel(title = "DNA your name"),
                   sidebarLayout(
                       sidebarPanel(
+                          h3("Select the desired parameters"),
+                          h4("Select the nucleic acid"),
+                          helpText("There are two types of nucleic acids: DNA and RNA.
+                                   mRNA is a copy of a fragment of a DNA -gene- and, thus, 
+                                   both types have codons that code fore aminoacids."),
+                          helpText("The only difference between DNA and mRNA codons is that where
+                                   DNA has a T, mRNA has a U."),
                           selectInput(inputId = "nucleotide",
                                       label = "Select the sequence format:", 
                                       choices = c("DNA", "mRNA"),
                                       selected = "DNA"),
+                          
                           br(),
+                          h4("Select the organism"),
+                          helpText("Although the genetic code is universal, different organisms have
+                                   different proportons of codons coding for one aminoacid. This is the
+                                   codon usage."),
+                          helpText("At the moment, only human and mouse are available."),
                           selectInput(inputId = "codon_usage",
                                       label = "Select an organism",
                                       choices = c("Human", "Mouse"),
@@ -141,29 +159,41 @@ ui <- navbarPage(title = "DNAme",
                           helpText("In some cases, some extra letters are used to denote two similar 
                                    aminoacids (B denotes Asparagine or Aspartic acid and Z denotes
                                    Glutamine or Glutamic acid). X denotes 'any aminoacid' which is converted to
-                                   NNN in codon code. Here, only X is made available, but it is not recommended."),
-                          checkboxInput(inputId = "extra_letters", 
-                                        label = "Use X?", 
-                                        value = FALSE),
+                                   NNN in codon code."),
+                          helpText("At the moment, enabling extra letters is not available. 
+                                   However it is not recommended."),
+                          #checkboxInput(inputId = "extra_letters", 
+                          #              label = "Use X?", 
+                          #              value = FALSE),
                           
                           br(),
+                          h4("Select a sepearator"),
+                          helpText("Select a separator for each of the codons composing your DNA name. Default is '-',
+                                   but it could be a blank space or nothing."),
                           textInput(inputId = "separator",
-                                    label = "Select a separator for the codons composing your name:", 
+                                    label = "Select a separator:", 
                                     value = "-"),
                           
                           br(),
+                          h3("Write your name"),
+                          helpText("Write your name or any word you want.
+                                   The word you write must not contain any special characters, 
+                                   because it will cause your DNA name to have 'NA' values."),
                           textInput(inputId = "name",
-                                    label = "Write your name in UPPER case:", 
-                                    value = "DNAME"),
+                                    label = "Write your name:", 
+                                    value = "DNAme"),
                           
                           br(),
                           submitButton("Submit")
                           
                       ),
                       
-                      mainPanel(h3("This is your DNA name!"),
-                                tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:20px", textOutput("text_output"))))),
-                                helpText("If there is a NA, it means that the letter your name does not have an aminoacid."),
+                      mainPanel(img(src="DNAme_logo.png", width="300px", align="right"),
+                                h3("This is your DNA name!"),
+                                helpText("From 5' to 3'"),
+                                tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:30px", textOutput("text_output"))))),
+                                br(),
+                                br(),
                                 br(),
                                 h4("Information"),
                                 helpText("This is all the information in the letters of your name."),
@@ -192,6 +222,15 @@ server <- function(input, output) {
   
   output$table_output <- 
     renderDataTable({
+      if(input$nucleotide == "DNA"){
+        table = dna_codon_aa
+      }
+      else{
+        table = rna_codon_aa
+      }
+      
+      DNAme <- name2dna(input = input$name, table = table, codon_usage = input$codon_usage, sep = input$separator)
+      
       DNAme$df
     })
 }
