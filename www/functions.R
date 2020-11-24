@@ -71,7 +71,7 @@ name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human
     # if there are not allowed letters --> stop
     if(TRUE %in% is.aa.letter(input)){
       
-      message <- paste("The letters", paste(c("B", "Ç", "J", "Ñ", "O", "U", "X", "Z"), sep = ", "), "are not allowed")
+      message <- paste("One of the letters in", input, "does not have an associated amminoacid.")
       return(message)
       
     }

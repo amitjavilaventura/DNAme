@@ -11,15 +11,15 @@ ui <- navbarPage(title = "DNAme",
          tabPanel(title = "Info",
                   titlePanel("What is DNAme?"),
                   navlistPanel(id = "info",
-                               tabPanel("Why 'DNAme'?",
+                               tabPanel("Developer",
                                         img(src="DNAme_logo.png", width="300px", align="right"),
-                                        h3("What does DNAme mean?"),
-                                        p("The word 'DNAme' is just a contraction of 'DNA' and 'name', 
-                                          but you could also thing of 'DNA' as a verb that converts 'me' to DNA."),
-                                        p("You can pronounce it in several ways:"),
-                                        tags$ul(tags$li("'D-N-name'"),
-                                                tags$li("'D-N-A-me'"),
-                                                tags$li("'D-name', although this one may be confusing, thus I don't recommend it."))),
+                                        h3("Who developed DNAme?"),
+                                        tags$p("DNAme is a funny app deveolped by:",
+                                               tags$ul(tags$li(tags$a(href = "https://amitjavilaventura.github.io", 
+                                                                      "Adrià Mitjavila Ventura")),
+                                              tags$li(tags$a(href="https://biobit.netlify.app", "BioBit"))))),
+                                        
+                            
                                tabPanel("Function",
                                         img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("What does DNAme do?"),
@@ -29,6 +29,17 @@ ui <- navbarPage(title = "DNAme",
                                           doing the reverse process explained by the central dogma of biology,
                                           DNAme converts each letter to its coding, either in DNA or mRNA format,
                                           going from protein to RNA or DNA.")),
+                               
+                               tabPanel("Why 'DNAme'?",
+                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        h3("What does DNAme mean?"),
+                                        p("The word 'DNAme' is just a contraction of 'DNA' and 'name', 
+                                          but you could also thing of 'DNA' as a verb that converts 'me' to DNA."),
+                                        p("You can pronounce it in several ways:"),
+                                        tags$ul(tags$li("'D-N-name'"),
+                                                tags$li("'D-N-A-me'"),
+                                                tags$li("'D-name', although this one may be confusing, thus I don't recommend it."))),
+                               
                                tabPanel("Goal",
                                         img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("Which is the goal of DNAme?"),
@@ -39,8 +50,8 @@ ui <- navbarPage(title = "DNAme",
                                         p("In order to fulfill these objectives, there is a theory section explaining things
                                           like the central dogma, the genetic codes, etc."),
                                         p("Please have in mine that the teory shown in this section has the purpose of
-                                          understand the process behind DNAme, don't use it for teaching purposes
-                                          because it may contain errors.")),
+                                          understanding the processes behind DNAme, don't use it for teaching purposes
+                                          because it may contain inaccuracies.")),
                                tabPanel("Instructions",
                                         img(src="DNAme_logo.png", width="300px", align="right"),
                                         h3("How to use DNAme?"),
@@ -217,7 +228,8 @@ server <- function(input, output) {
       
       DNAme <- name2dna(input = input$name, table = table, codon_usage = input$codon_usage, sep = input$separator)
       
-      paste(DNAme$name)
+      if(is.list(DNAme)){ paste(DNAme$name) }
+      else{ paste(DNAme) }
     })
   
   output$table_output <- 
@@ -230,8 +242,8 @@ server <- function(input, output) {
       }
       
       DNAme <- name2dna(input = input$name, table = table, codon_usage = input$codon_usage, sep = input$separator)
-      
-      DNAme$df
+      if(is.list(DNAme)){ DNAme$df }
+      else{ paste(DNAme) }
     })
 }
 
