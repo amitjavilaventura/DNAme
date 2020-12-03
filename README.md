@@ -28,3 +28,8 @@ To run the *DNAme* app you should go through the different steps:
 ## Contributors
 
 **Developer and maintainer**: [amitjavilaventura](https://amijtavilaventura.github.io)
+
+## To do's
+
+* Add more species to choose: look at this [tool](https://www.genscript.com/tools/codon-frequency-table).
+* Make a desktop app using `photon` R package.

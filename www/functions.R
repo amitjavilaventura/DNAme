@@ -86,7 +86,9 @@ name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human
       # create a list with the data.frame object and the name
       DNAme <- list()
       DNAme$df <- dna_name %>% 
-        set_colnames(c("Aminoacid (1-letter code)", "Aminoacid (3-letter code)", "Amino acid", "Most frequent codon (Human)", "Most frequent codon (Mouse)"))
+        set_colnames(c("Aminoacid (1-letter code)", "Aminoacid (3-letter code)", "Amino acid", 
+                       "Most frequent codon (Human)", "Most frequent codon (Mouse)", 
+                       "Most frequent codon (C. elegans)", "Most frequent codon (A. thaliana)"))
       
       DNAme$name <- paste((dna_name %>% select(codon_usage))[1:length(name),1], collapse = sep)
       

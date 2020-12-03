@@ -5,3 +5,6 @@
 electron*
 rsconnect/
 files.txt
+package*
+node_modules/
+app

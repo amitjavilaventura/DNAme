@@ -3,16 +3,17 @@
 #########
 
 library(shiny)
+library(shinythemes)
 source("www/functions.R")
 source("www/tables.R")
 
 # Define UI for application that draws a histogram
-ui <- navbarPage(title = "DNAme",
-         tabPanel(title = "Info",
+ui <- navbarPage(title = "DNAme", collapsible = T, theme = shinythemes::shinytheme(theme = "slate"), #inverse = T,
+         tabPanel(title = "Home",
                   titlePanel("What is DNAme?"),
-                  navlistPanel(id = "info",
+                  navlistPanel(id = "info", 
                                tabPanel("Developer",
-                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        img(src="DNAme_logo.png", width="400px", align="right"),
                                         h3("Who developed DNAme?"),
                                         tags$p("DNAme is a funny app deveolped by:",
                                                tags$ul(tags$li(tags$a(href = "https://amitjavilaventura.github.io", 
@@ -21,9 +22,9 @@ ui <- navbarPage(title = "DNAme",
                                         
                             
                                tabPanel("Function",
-                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        img(src="DNAme_logo.png", width="400px", align="right"),
                                         h3("What does DNAme do?"),
-                                        p("DNAme is a shiny application to convert a name to a DNA sequence."),
+                                        p("DNAme is a shiny applicatiosn to convert a name to a DNA sequence."),
                                         p("It is based on the one-letter code for the amino acids and, considereing
                                           each letter of the name as an aminoacid and
                                           doing the reverse process explained by the central dogma of biology,
@@ -31,7 +32,7 @@ ui <- navbarPage(title = "DNAme",
                                           going from protein to RNA or DNA.")),
                                
                                tabPanel("Why 'DNAme'?",
-                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        img(src="DNAme_logo.png", width="400px", align="right"),
                                         h3("What does DNAme mean?"),
                                         p("The word 'DNAme' is just a contraction of 'DNA' and 'name', 
                                           but you could also thing of 'DNA' as a verb that converts 'me' to DNA."),
@@ -41,7 +42,7 @@ ui <- navbarPage(title = "DNAme",
                                                 tags$li("'D-name', although this one may be confusing, thus I don't recommend it."))),
                                
                                tabPanel("Goal",
-                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        img(src="DNAme_logo.png", width="400px", align="right"),
                                         h3("Which is the goal of DNAme?"),
                                         p("DNAme goal can be different for each person that uses it:"),
                                         tags$ul(tags$li("Having fun changing one's name to DNA sequence."),
@@ -53,7 +54,7 @@ ui <- navbarPage(title = "DNAme",
                                           understanding the processes behind DNAme, don't use it for teaching purposes
                                           because it may contain inaccuracies.")),
                                tabPanel("Instructions",
-                                        img(src="DNAme_logo.png", width="300px", align="right"),
+                                        img(src="DNAme_logo.png", width="400px", align="right"),
                                         h3("How to use DNAme?"),
                                         h4("Read the theory"),
                                         p("To use DNAme, it is important to read the biological theory behind it because:"),
@@ -162,7 +163,9 @@ ui <- navbarPage(title = "DNAme",
                           helpText("At the moment, only human and mouse are available."),
                           selectInput(inputId = "codon_usage",
                                       label = "Select an organism",
-                                      choices = c("Human", "Mouse"),
+                                      choices = list("Human" = "Human", "Mouse" = "Mouse", 
+                                                     "C. elegans" = "Celegans", 
+                                                     "A. thaliana" = "Athaliana"),
                                       selected = "Human"),
                           
                           br(),
@@ -199,23 +202,29 @@ ui <- navbarPage(title = "DNAme",
                           
                       ),
                       
-                      mainPanel(img(src="DNAme_logo.png", width="300px", align="right"),
-                                h3("This is your DNA name!"),
+                      mainPanel(img(src="DNAme_logo.png", width="250px", align="right"),
+                                h3("This is your DNA name!", sep = ""),
+                                tags$div(HTML(paste(tags$span(style="color:blue",
+                                                        textOutput(outputId = "name"))))), 
                                 helpText("From 5' to 3'"),
-                                tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:30px", textOutput("text_output"))))),
-                                br(),
-                                br(),
-                                br(),
+                                tags$div(HTML(paste(tags$span(style="color:red; font-face:bold; font-size:30px", 
+                                                              textOutput("text_output"))))),
+                                
+                                br(),br(),br(),br(),br(),
+                                
                                 h4("Information"),
                                 helpText("This is all the information in the letters of your name."),
-                                dataTableOutput(outputId = "table_output"))
+                                tableOutput(outputId = "table_output"))
                   ))
 )
 
-# Define server logic required to draw a histogram
+# SERVER
 server <- function(input, output) {
   
-  
+  output$name <- 
+    renderText({
+      paste(input$name, ", this is your DNA name:", sep = "")
+    })
   
   output$text_output <-
     renderText({
@@ -233,7 +242,7 @@ server <- function(input, output) {
     })
   
   output$table_output <- 
-    renderDataTable({
+    renderTable({
       if(input$nucleotide == "DNA"){
         table = dna_codon_aa
       }
