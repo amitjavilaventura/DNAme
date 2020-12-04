@@ -8,7 +8,7 @@ library(shiny)
 library(shinythemes)
 library(shinydashboard)
 source("www/functions.R")
-source("www/ui_functions.R")
+#source("www/ui_functions.R")
 source("www/tables.R")
 
 ### USER INTERFACE ------------------------------
