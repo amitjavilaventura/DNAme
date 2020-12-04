@@ -3,8 +3,9 @@
 ############################
 
 
-ui <- dashboardPage(header = dashboardHeader(title = "DNAme") , skin = "blue", 
-                    title = "DNAme",
+ui <- dashboardPage(header = dashboardHeader(title = "DNAme"), 
+                    skin = "blue", 
+                    title = "DNAme", 
                     sidebar = dashboardSidebar(
                       sidebarMenu(
                         br(),
@@ -20,8 +21,9 @@ ui <- dashboardPage(header = dashboardHeader(title = "DNAme") , skin = "blue",
                       tabItems(
                         tabItem("About", 
                                 tabsetPanel(id = "info",
-                                            tabPanel("Welcome", 
-                                                     h2("Welcome to DNAme!"),
+                                            tabPanel("Welcome",
+                                                     br(),
+                                                     HTML('<center><p style="font-size:60px;font-family:Helvetica;color:black;"><u>Welcome to DNAme!</u></p></center>'),
                                                      HTML('<center><img src="DNAme_logo.png" width="600px"></center>')),
                                             tabPanel("General information",
                                                      img(src="DNAme_logo.png", width="400px", align="right"),
@@ -84,7 +86,14 @@ ui <- dashboardPage(header = dashboardHeader(title = "DNAme") , skin = "blue",
                                                                      tags$li("Click to 'DNAme'."))),
                                                      br(),
                                                      h4("Look at the source code (optional)"),
-                                                     p("The source files of DNAme can be visualized going to the 'Code' tab in the left-side panel.")))),
+                                                     p("The source files of DNAme can be visualized going to the 'Code' tab in the left-side panel."),
+                                                     br(),
+                                                     h4("Other organisms (optional)"),
+                                                     p("Look at the codon usage of several organisms using", 
+                                                       tags$a(href = "https://www.genscript.com/tools/codon-frequency-table","this tool.", target="_blank")),
+                                                     p("For each aminoacid, take the most frequent codon within the desired organism, 
+                                                       modify the user interface ('src/ui.R'), the server function ('src/server.R') 
+                                                       and the codon usage tables ('src/tables.R') to enable DNAme to use the most frequent codons of the desired organism.")))),
                         
                         
                         tabItem("DNAme",

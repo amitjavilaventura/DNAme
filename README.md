@@ -12,9 +12,7 @@ To run the *DNAme* app you should go through the different steps:
 
 1. Read the information in the *Info* section.
 
-2. Read the theory in the *Theory* section.
-  
-  + This section is to understand the processes behind *DNAme*, so don't use it for teaching purposes, because it may contain accuracies.
+2. *optional* Read the theory at Wikipedia to understand the processes behind *DNAme*.
 
 3. Go to the *DNA your name* section:
 
