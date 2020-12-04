@@ -22,7 +22,9 @@ To run the *DNAme* app you should go through the different steps:
       
   + Write your name.
   
-  + *Note that there is a result by default, these are obtained using the word 'DNAme'*.
+  + Click to `DNAme`
+  
+  + *Note that there is a result by default, this is obtained using the word 'DNAme'*.
       
 
 ## Contributors
