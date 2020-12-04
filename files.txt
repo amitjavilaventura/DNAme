@@ -1,0 +1,9 @@
+app.R
+src/ui.R
+src/server.R
+src/functions.R
+src/tables.R
+www/central-dogma.png
+www/DNAme_logo.png
+www/human_codon_usage.png
+www/genetic_code_wheel_yourgenome.png
