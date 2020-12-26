@@ -13,7 +13,7 @@ is.letter <- function(input){
   
   return(check.letter)
 }
-
+input="DNA me"
 # ----- Is.Letter.Normal ----- #
 # Helper function to see if the input name characters of name2dna is a non-accented (i.e. à) letter or not
 is.letter.normal <- function(input){
@@ -22,7 +22,7 @@ is.letter.normal <- function(input){
   
   splited <- stringr::str_split(string = input, pattern = "") %>% unlist()
   
-  check.letter <- grepl("[[:alpha:]]", splited)
+  check.letter <- grepl("[a-zA-Z[:space:]]", splited)
   check.accent <- grepl("[àáâãçèéêìíîñòóôõùúûÀÁÂÃÇÈÉÊÌÍÎÑÒÓÔÕÙÚÛ]", splited)
   
   if(FALSE %in% check.letter | TRUE %in% check.accent){
@@ -88,7 +88,8 @@ name2dna <- function(input="DNAmeà", table = dna_codon_aa, codon_usage = "Human
       DNAme$df <- dna_name %>% 
         set_colnames(c("Aminoacid (1-letter code)", "Aminoacid (3-letter code)", "Amino acid", 
                        "Most frequent codon (Human)", "Most frequent codon (Mouse)", 
-                       "Most frequent codon (C. elegans)", "Most frequent codon (A. thaliana)"))
+                       "Most frequent codon (C. elegans)", "Most frequent codon (A. thaliana)",
+                       "Most frequent codon (E. coli)"))
       
       DNAme$name <- paste((dna_name %>% select(codon_usage))[1:length(name),1], collapse = sep)
       
