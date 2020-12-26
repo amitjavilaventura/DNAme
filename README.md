@@ -29,7 +29,7 @@ To run the *DNAme* app you should go through the different steps:
 
 **Developer and maintainer**: [amitjavilaventura](https://amijtavilaventura.github.io)
 
-## To do's
+## License
 
-* Add more species to choose: look at this [tool](https://www.genscript.com/tools/codon-frequency-table).
-* Make a desktop app using `photon` R package.
+<center><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</center>
+

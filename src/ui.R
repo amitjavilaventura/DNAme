@@ -54,8 +54,10 @@ ui <- dashboardPage(header = dashboardHeader(title = "DNAme"),
                                                      
                                                      h3("Contributor"),
                                                      tags$p("DNAme is a funny app deveolped by:",
-                                                            tags$ul(tags$li(tags$a(href = "https://amitjavilaventura.github.io","Adrià Mitjavila Ventura", target="_blank")),
-                                                                    tags$li(tags$a(href = "https://biobit.netlify.app", "BioBit", target="_blank"))))),
+                                                            tags$ul(tags$li(tags$a(href = "https://amitjavilaventura.github.io","Adrià Mitjavila Ventura", target="_blank")))),
+                                                     
+                                                     h3("License"),
+                                                     HTML('<center><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</center>')),
                                             
                                             tabPanel("Instructions",
                                                      img(src="DNAme_logo.png", width="400px", align="right"),
